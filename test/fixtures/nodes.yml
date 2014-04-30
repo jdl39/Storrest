@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  story_id: 
+  node_id: 
+  contributor: MyString
+  text: MyText
+  is_active: false
+
+two:
+  story_id: 
+  node_id: 
+  contributor: MyString
+  text: MyText
+  is_active: false

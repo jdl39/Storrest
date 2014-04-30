@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  arbiter_id: 
+  node_id: 
+  title: MyString
+  complete: false
+
+two:
+  arbiter_id: 
+  node_id: 
+  title: MyString
+  complete: false
