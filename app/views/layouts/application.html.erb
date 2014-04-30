@@ -5,6 +5,8 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <!-- http://stackoverflow.com/questions/8465411/how-to-assign-different-stylesheets-in-a-rails-project -->
+  <%= yield :head %>
 </head>
 <body>
 
