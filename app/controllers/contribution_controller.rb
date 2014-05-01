@@ -5,7 +5,7 @@ class ContributionController < ApplicationController
 
 	# TODO: Make a way to skip directly to rating if a writing contribution has already been made.
 	def contribute
-		@story = Story.find(params[:story_id])
+		@story = Story.find(params[:id])
 		nodes_needing_children = Node.where("parent_story_id = ? AND contributions_completed = ?", @story.id, false)
 		@assigned_node = node_to_assign_for_writing(nodes_needing_children)
 		if not assigned_node.nil?
