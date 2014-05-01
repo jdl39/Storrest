@@ -6,6 +6,8 @@ class CreateNodes < ActiveRecord::Migration
       t.string :contributor
       t.text :text
       t.boolean :is_active
+      t.boolean :contributions_completed
+      t.boolean :ratings_completed
 
       t.timestamps
     end
