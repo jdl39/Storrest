@@ -12,4 +12,10 @@ class Node < ActiveRecord::Base
   		return self.parent_node.render_to_text + " " + self.text
   	end
   end
+
+  def children
+    return Node.where(parent_node: self)
+
+  end
+
 end
