@@ -1,0 +1,19 @@
+<h1>Start a New Story</h1>
+
+<h4>Enter the story seed here</h4>
+
+<%= form_for(@node, :url => {:action => :create}) do |f| %>
+	<table>
+    	<tr>
+    		<td>Story Title</td>
+    		<td><%= f.text_field :contributor %></td>
+    	</tr>
+		<tr>
+     		<td><%= f.label :text %></td>
+     		<td><%= f.text_area :text %></td>
+    	</tr>
+		<tr>
+      		<td colspan="2"><%= f.submit %></td>
+    	</tr>
+	</table>
+<% end %>
