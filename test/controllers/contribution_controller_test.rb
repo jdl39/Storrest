@@ -1,7 +1,9 @@
 require 'test_helper'
 
 class ContributionControllerTest < ActionController::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "should get rate" do
+    get :rate
+    assert_response :success
+  end
+
 end
