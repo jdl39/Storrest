@@ -28,8 +28,11 @@ ActiveRecord::Schema.define(version: 20140430215959) do
     t.string   "contributor"
     t.text     "text"
     t.boolean  "is_active"
+<<<<<<< HEAD
+=======
     t.boolean  "contributions_completed"
     t.boolean  "ratings_completed"
+>>>>>>> 832f5ab81f231bed999ae2e58072a4bd89ca85a4
     t.datetime "created_at"
     t.datetime "updated_at"
   end

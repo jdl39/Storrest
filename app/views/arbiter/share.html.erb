@@ -1,0 +1,4 @@
+<h1>Share Your Story!</h1>
+
+<p>Give this URL to your friends and they can contribute to your story</p>
+<h3><a href="/contribution/contribute/<%= @story.id %>"><%= request.original_url.partition('arbiter/share').first %>contribution/contribute/<%= @story.id %></a></h3>
