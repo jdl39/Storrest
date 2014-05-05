@@ -10,7 +10,7 @@ class ArbiterController < ApplicationController
   		newNode.parent_node = nil
   		#newNode.contributor = session[:username]
   		newNode.text = params[:node][:text]
-  		newNode.is_active = true
+  		newNode.is_active = false
   		newNode.contributions_completed = false
   		newNode.ratings_completed = false
   		

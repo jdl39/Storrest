@@ -1,3 +1,9 @@
 <h1>Contribution Page</h1>
 
 <p><%= @story_text %></p>
+
+<%= form_for :contribution, :url => {action: 'post_writing'} do |f| %>
+	<%= hidden_field_tag 'contribution[parent_id]', @assigned_node.id %>
+	<%= f.text_area :text %>
+	<%= f.submit %>
+<% end %>

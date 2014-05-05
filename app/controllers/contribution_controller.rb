@@ -3,24 +3,24 @@ class ContributionController < ApplicationController
 	# TODO: Make a way to skip directly to rating if a writing contribution has already been made.
 	def contribute
 		@story = Story.find(params[:id])
-		nodes_needing_children = Node.where("parent_story_id = ? AND contributions_completed = ?", @story.id, false)
+		nodes_needing_children = Node.where("parent_story_id = ? AND contributions_completed = ? AND is_active = ?", @story.id, false, false)
 		@assigned_node = node_to_assign_for_writing(nodes_needing_children)
 		if not @assigned_node.nil?
 			# Contribute writing to the assigned node.
 			@story_text = @assigned_node.render_to_text
-			# TODO: Render the writing view.
+			# Render the writing view.
 			render 'contribution'
 			return
 		else
 			# Contribute rating
 			#nodes_needing_ratings = Node.where("parent_story_id = ? AND ratings_completed = ?", @story.id, false)
-			nodes_needing_ratings = Node.where("parent_story_id = ?", @story.id) # This line allows for more ratings than needed.
+			nodes_needing_ratings = Node.where("parent_story_id = ? AND is_active = ?", @story.id, true) # This line allows for more ratings than needed.
 			@assigned_nodes = nodes_to_assign_for_rating(nodes_needing_ratings)
 			if @assigned_nodes[0].nil? or @assigned_nodes[1].nil?
 				# TODO: They've contributed as much as possible! Give them a pat on the back.
 			else
-				@story_texts = [assigned_nodes[0].render_to_text, assigned_nodes[1].render_to_text]
-				# TODO: Render the rating view.
+				@story_texts = [@assigned_nodes[0].render_to_text, @assigned_nodes[1].render_to_text]
+				# Render the rating view.
 				render 'rating'
 				return
 			end
@@ -28,13 +28,15 @@ class ContributionController < ApplicationController
 	end
 
 	def post_writing
+		contribution = params[:contribution]
+
 		# Build new node.
 		new_node = Node.new
-		parent_node = Node.find(params[:parent_id])
+		parent_node = Node.find(contribution[:parent_id])
 		new_node.parent_story = parent_node.parent_story
 		new_node.parent_node = parent_node
 		new_node.contributor = current_contributor
-		new_node.text = params[:text]
+		new_node.text = contribution[:text]
 		new_node.is_active = true
 		new_node.contributions_completed = false
 		new_node.ratings_completed = false
@@ -49,27 +51,29 @@ class ContributionController < ApplicationController
 			parent_node.save
 		end
 
-		redirect_to action: 'contribute'
+		redirect_to action: 'contribute', id: parent_node.parent_story.id
 	end
 
 	def post_rating
+		rating_params = params[:rating_params]
+
 		# Build new rating.
 		new_rating1 = Rating.new
-		parent_node1 = Node.find(params[:node1_id])
-		new_rating1.node = parent_node
-		new_rating1.rating1 = params[:rating11]
-		new_rating1.rating2 = params[:rating12]
-		new_rating1.rating3 = params[:rating13]
-		new_rating1.rating4 = params[:rating14]
+		parent_node1 = Node.find(rating_params[:node1_id])
+		new_rating1.node = parent_node1
+		new_rating1.rating1 = rating_params[:rating11]
+		new_rating1.rating2 = rating_params[:rating12]
+		new_rating1.rating3 = rating_params[:rating13]
+		new_rating1.rating4 = rating_params[:rating14]
 		new_rating1.contributor = current_contributor
 
 		new_rating2 = Rating.new
-		parent_node2 = Node.find(params[:node2_id])
-		new_rating2.node = parent_node
-		new_rating2.rating1 = params[:rating21]
-		new_rating2.rating2 = params[:rating22]
-		new_rating2.rating3 = params[:rating23]
-		new_rating2.rating4 = params[:rating24]
+		parent_node2 = Node.find(rating_params[:node2_id])
+		new_rating2.node = parent_node2
+		new_rating2.rating1 = rating_params[:rating21]
+		new_rating2.rating2 = rating_params[:rating22]
+		new_rating2.rating3 = rating_params[:rating23]
+		new_rating2.rating4 = rating_params[:rating24]
 		new_rating2.contributor = current_contributor
 
 		unless new_rating1.save
@@ -89,7 +93,7 @@ class ContributionController < ApplicationController
 			parent_node2.save
 		end
 
-		redirect_to action: 'contribute'
+		redirect_to action: 'contribute', id: parent_node1.parent_story.id
 	end
 
 	private
@@ -103,7 +107,6 @@ class ContributionController < ApplicationController
 		def node_to_assign_for_writing(possibilities)
 			to_return = nil
 			for node in possibilities do
-
 				# See if this contributor already added to this node.
 				already_wrote = false
 				for child in node.children do

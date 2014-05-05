@@ -1,5 +1,36 @@
-<% content_for :head do %>
-  <%= stylesheet_link_tag "rating" %>
-<% end %>
+<h1>Rating Page</h1>
 
-Rating Page
+<h2>Story 1</h2>
+<p><%= @story_texts[0] %></p>
+
+<h2>Story 2</h2>
+<p><%= @story_texts[1] %></p>
+
+<%= form_for :rating_params, url: {action: 'post_rating'} do |f| %>
+	<%= hidden_field_tag 'rating_params[node1_id]', @assigned_nodes[0].id %>
+	<%= hidden_field_tag 'rating_params[node2_id]', @assigned_nodes[1].id %>
+
+	<h2>Rating 1</h2>
+	<% (1..4).each do |rating_num| %>
+		<p>Question <%= rating_num.to_s %></p>
+		<% (1..5).each do |rating_val| %>
+			<%= f.radio_button 'rating1' + rating_num.to_s, rating_val, checked: rating_val == 3 ? true : false %>
+			<%= f.label 'rating1' + rating_num.to_s, rating_val.to_s, value: rating_val %>
+			<br />
+		<% end %>
+		<br />
+	<% end %>
+
+	<h2>Rating 2</h2>
+	<% (1..4).each do |rating_num| %>
+		<p>Question <%= rating_num.to_s %></p>
+		<% (1..5).each do |rating_val| %>
+			<%= f.radio_button 'rating2' + rating_num.to_s, rating_val, checked: rating_val == 3 ? true : false %>
+			<%= f.label 'rating2' + rating_num.to_s, rating_val.to_s, value: rating_val %>
+			<br />
+		<% end %>
+		<br />
+	<% end %>
+
+	<%= f.submit %>
+<% end %>
