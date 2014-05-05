@@ -1,14 +1,4 @@
 class ContributionController < ApplicationController
-<<<<<<< HEAD
-  def rate
-  end
-
-  def write
-  end
-
-  def choose
-  end
-=======
 
 	# TODO: Make a way to skip directly to rating if a writing contribution has already been made.
 	def contribute
@@ -174,5 +164,4 @@ class ContributionController < ApplicationController
 
 			return [node1, node2]
 		end
->>>>>>> 832f5ab81f231bed999ae2e58072a4bd89ca85a4
 end
