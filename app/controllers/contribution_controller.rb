@@ -5,10 +5,12 @@ class ContributionController < ApplicationController
 		@story = Story.find(params[:id])
 		nodes_needing_children = Node.where("parent_story_id = ? AND contributions_completed = ?", @story.id, false)
 		@assigned_node = node_to_assign_for_writing(nodes_needing_children)
-		if not assigned_node.nil?
+		if not @assigned_node.nil?
 			# Contribute writing to the assigned node.
-			@story_text = assigned_node.render_to_text
+			@story_text = @assigned_node.render_to_text
 			# TODO: Render the writing view.
+			render 'contribution'
+			return
 		else
 			# Contribute rating
 			#nodes_needing_ratings = Node.where("parent_story_id = ? AND ratings_completed = ?", @story.id, false)
@@ -19,6 +21,8 @@ class ContributionController < ApplicationController
 			else
 				@story_texts = [assigned_nodes[0].render_to_text, assigned_nodes[1].render_to_text]
 				# TODO: Render the rating view.
+				render 'rating'
+				return
 			end
 		end
 	end
@@ -102,7 +106,7 @@ class ContributionController < ApplicationController
 
 				# See if this contributor already added to this node.
 				already_wrote = false
-				for child in node.nodes do
+				for child in node.children do
 					if node.contributor == current_contributor
 						already_wrote = true
 						break
@@ -116,7 +120,7 @@ class ContributionController < ApplicationController
 				if to_return.nil?
 					to_return = node
 				else
-					if node.nodes.length < to_return.nodes.length
+					if node.children.length < to_return.children.length
 						to_return = node
 					end
 				end
