@@ -1,8 +1,5 @@
 class ContributionController < ApplicationController
 
-	NUM_CHILDREN_NEEDED = 5
-	NUM_RATINGS_NEEDED = 5
-
 	# TODO: Make a way to skip directly to rating if a writing contribution has already been made.
 	def contribute
 		@story = Story.find(params[:id])
@@ -14,7 +11,8 @@ class ContributionController < ApplicationController
 			# TODO: Render the writing view.
 		else
 			# Contribute rating
-			nodes_needing_ratings = Node.where("parent_story_id = ? AND ratings_completed = ?", @story.id, false)
+			#nodes_needing_ratings = Node.where("parent_story_id = ? AND ratings_completed = ?", @story.id, false)
+			nodes_needing_ratings = Node.where("parent_story_id = ?", @story.id) # This line allows for more ratings than needed.
 			@assigned_nodes = nodes_to_assign_for_rating(nodes_needing_ratings)
 			if @assigned_nodes[0].nil? or @assigned_nodes[1].nil?
 				# TODO: They've contributed as much as possible! Give them a pat on the back.
@@ -23,6 +21,71 @@ class ContributionController < ApplicationController
 				# TODO: Render the rating view.
 			end
 		end
+	end
+
+	def post_writing
+		# Build new node.
+		new_node = Node.new
+		parent_node = Node.find(params[:parent_id])
+		new_node.parent_story = parent_node.parent_story
+		new_node.parent_node = parent_node
+		new_node.contributor = current_contributor
+		new_node.text = params[:text]
+		new_node.is_active = true
+		new_node.contributions_completed = false
+		new_node.ratings_completed = false
+
+		unless new_node.save
+			# TODO: Handle save errors.
+		end
+
+		# See if we've got enough contributions.
+		if parent_node.children.size >= Node::NUM_CHILDREN_NEEDED
+			parent_node.contributions_completed = true
+			parent_node.save
+		end
+
+		redirect_to action: 'contribute'
+	end
+
+	def post_rating
+		# Build new rating.
+		new_rating1 = Rating.new
+		parent_node1 = Node.find(params[:node1_id])
+		new_rating1.node = parent_node
+		new_rating1.rating1 = params[:rating11]
+		new_rating1.rating2 = params[:rating12]
+		new_rating1.rating3 = params[:rating13]
+		new_rating1.rating4 = params[:rating14]
+		new_rating1.contributor = current_contributor
+
+		new_rating2 = Rating.new
+		parent_node2 = Node.find(params[:node2_id])
+		new_rating2.node = parent_node
+		new_rating2.rating1 = params[:rating21]
+		new_rating2.rating2 = params[:rating22]
+		new_rating2.rating3 = params[:rating23]
+		new_rating2.rating4 = params[:rating24]
+		new_rating2.contributor = current_contributor
+
+		unless new_rating1.save
+			# TODO: Handle save errors.
+		end
+		unless new_rating2.save
+			# TODO: Handle save errors.
+		end
+		
+		# See if we've got enough ratings.
+		if parent_node1.ratings.size >= Node::NUM_RATINGS_NEEDED
+			parent_node1.ratings_completed = true
+			parent_node1.save
+		end
+		if parent_node2.ratings.size >= Node::NUM_RATINGS_NEEDED
+			parent_node2.ratings_completed = true
+			parent_node2.save
+		end
+
+		redirect_to action: 'contribute'
 	end
 
 	private

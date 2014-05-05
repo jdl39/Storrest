@@ -1,4 +1,7 @@
 class Node < ActiveRecord::Base
+  NUM_CHILDREN_NEEDED = 5
+  NUM_RATINGS_NEEDED = 5
+
   belongs_to :parent_story, :class_name => "Story", :foreign_key => "parent_story_id"
   belongs_to :parent_node, :class_name => "Node", :foreign_key => "parent_node_id"
   has_one :story
@@ -14,7 +17,7 @@ class Node < ActiveRecord::Base
   end
 
   def children
-    return Node.where(parent_node: self)
+    return self.nodes
 
   end
 
