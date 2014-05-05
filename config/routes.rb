@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'contribution/rate'
+
+  get 'contribution/write'
+
   get ':controller(/:action(/:id))'
   post ':controller(/:action(/:id))'
   # The priority is based upon order of creation: first created -> highest priority.

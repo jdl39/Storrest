@@ -2,15 +2,22 @@
 <html>
 <head>
   <title>Storrest</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <link href='http://fonts.googleapis.com/css?family=Playfair+Display+SC:700' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+<link href='http://fonts.googleapis.com/css?family=Montserrat+Subrayada:700' rel='stylesheet' type='text/css'>
   <!-- http://stackoverflow.com/questions/8465411/how-to-assign-different-stylesheets-in-a-rails-project -->
-  <%= yield :head %>
 </head>
-<body>
+<body style="margin:0;padding:0">
+  <div id='maincontainer'>
+    <div id='hblock'>
 
-<%= yield %>
+    	<h1 id='htitle'>Storrest</h1>
+    </div>
+    <div id='mainbody'>
+      <%= yield %>
+  </div>
 
 </body>
 </html>
