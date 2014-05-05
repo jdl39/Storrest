@@ -1,2 +1,5 @@
 <h1>Trim the Story</h1>
 
+<% @story.nodes.each do |node| %>
+  <%= check_box_tag "car_ids[]", c.id, false, :id => "car_ids_#{c.id}" %>
+<% end %>

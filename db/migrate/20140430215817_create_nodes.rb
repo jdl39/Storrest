@@ -5,9 +5,9 @@ class CreateNodes < ActiveRecord::Migration
       t.references :parent_node, index: true
       t.string :contributor
       t.text :text
-      t.boolean :is_active
-      t.boolean :contributions_completed
-      t.boolean :ratings_completed
+      t.boolean :is_active #a leaf that the arbiter hasn't passed judgement on - needs to be displayed in trim
+      t.boolean :contributions_completed #needs more contributions?
+      t.boolean :ratings_completed #sufficient number of ratings completed?
 
       t.timestamps
     end

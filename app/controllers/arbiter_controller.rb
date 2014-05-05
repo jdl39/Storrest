@@ -35,6 +35,11 @@ class ArbiterController < ApplicationController
   end
 
   def trim
+    @story = Story.find(params[:id])
+  end
+
+  def trimPost
+    
   end
 
   def login
