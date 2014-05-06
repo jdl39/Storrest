@@ -1,10 +1,13 @@
 <h1>Rating Page</h1>
 
-<h2>Story 1</h2>
-<p><%= @story_texts[0] %></p>
+<h2>Trunk Text</h2>
+<p><%= @trunk_text %></p>
 
-<h2>Story 2</h2>
-<p><%= @story_texts[1] %></p>
+<h2>Branch 1</h2>
+<p><%= @branch_texts[0] %></p>
+
+<h2>Branch 2</h2>
+<p><%= @branch_texts[1] %></p>
 
 <%= form_for :rating_params, url: {action: 'post_rating'} do |f| %>
 	<%= hidden_field_tag 'rating_params[node1_id]', @assigned_nodes[0].id %>

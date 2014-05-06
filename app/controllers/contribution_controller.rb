@@ -19,7 +19,9 @@ class ContributionController < ApplicationController
 			if @assigned_nodes[0].nil? or @assigned_nodes[1].nil?
 				# TODO: They've contributed as much as possible! Give them a pat on the back.
 			else
-				@story_texts = [@assigned_nodes[0].render_to_text, @assigned_nodes[1].render_to_text]
+				common_ancestor = @assigned_nodes[0].youngest_common_ancestor(@assigned_nodes[1])
+				@trunk_text = common_ancestor.nil? ? "" : common_ancestor.render_to_text
+				@branch_texts = [@assigned_nodes[0].render_to_text_after_node(common_ancestor), @assigned_nodes[1].render_to_text_after_node(common_ancestor)]
 				# Render the rating view.
 				render 'rating'
 				return
