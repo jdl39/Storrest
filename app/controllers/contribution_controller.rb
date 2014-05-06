@@ -9,7 +9,7 @@ class ContributionController < ApplicationController
 			# Contribute writing to the assigned node.
 			@story_text = @assigned_node.render_to_text
 			# Render the writing view.
-			render 'contribution'
+			render 'write'
 			return
 		else
 			# Contribute rating

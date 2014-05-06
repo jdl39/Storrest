@@ -1,26 +1,11 @@
-
 <div id='paperpage'>
-	<h1>Contribution#write</h1>
-	<p>Find me in app/views/contribution/write.html.erb</p>
-	<p>Find me in app/views/contribution/write.html.erb</p>
-	<p>Find me in app/views/contribution/write.html.erb</p>
-	<p>Find me in app/views/contribution/write.html.erb</p>
-	<p>Find me in app/views/contribution/write.html.erb</p>
-	<p>Find me in app/views/contribution/write.html.erb</p>
-	<p>Find me in app/views/contribution/write.html.erb</p>
-	<p>Find me in app/views/contribution/write.html.erb</p>
-	<p>Find me in app/views/contribution/write.html.erb</p>
-	<p>Find me in app/views/contribution/write.html.erb</p>
-	<p>Find me in app/views/contribution/write.html.erb</p>
-	<p>Find me in app/views/contribution/write.html.erb</p>
-	<p>Find me in app/views/contribution/write.html.erb</p>
-	<p>Find me in app/views/contribution/write.html.erb</p>
-	<p>Find me in app/views/contribution/write.html.erb</p>
-	<p>Find me in app/views/contribution/write.html.erb</p>
-	<p>Find me in app/views/contribution/write.html.erb</p>
-	<p>Find me in app/views/contribution/write.html.erb</p>
-<!-- 	<svg height="210" width="500" class="shadow" id="paper1">
-	  <polygon points="200,10 250,190 160,210" style="fill:white" />
-	</svg> -->
+	<h1>Write Contribution Page</h1>
 
+	<p><%= @story_text %></p>
+
+	<%= form_for :contribution, :url => {action: 'post_writing'} do |f| %>
+	 	<%= hidden_field_tag 'contribution[parent_id]', @assigned_node.id %>
+ 		<%= f.text_area :text %>
+		<%= f.submit %>
+	<% end %>
 </div>
