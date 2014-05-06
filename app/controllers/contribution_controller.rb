@@ -4,7 +4,7 @@ class ContributionController < ApplicationController
 	def contribute
 		@story = Story.find(params[:id])
 		nodes_needing_children = Node.where("parent_story_id = ? AND contributions_completed = ? AND is_active = ?", @story.id, false, false)
-		@assigned_node = node_to_assign_for_writing(nodes_needing_children)
+		@assigned_node = params[:rating] == 'true' ? nil : node_to_assign_for_writing(nodes_needing_children)
 		if not @assigned_node.nil?
 			# Contribute writing to the assigned node.
 			@story_text = @assigned_node.render_to_text
@@ -17,7 +17,9 @@ class ContributionController < ApplicationController
 			nodes_needing_ratings = Node.where("parent_story_id = ? AND is_active = ?", @story.id, true) # This line allows for more ratings than needed.
 			@assigned_nodes = nodes_to_assign_for_rating(nodes_needing_ratings)
 			if @assigned_nodes[0].nil? or @assigned_nodes[1].nil?
-				# TODO: They've contributed as much as possible! Give them a pat on the back.
+				# They've contributed as much as possible! Give them a pat on the back.
+				render 'no_more_to_contribute'
+				return
 			else
 				common_ancestor = @assigned_nodes[0].youngest_common_ancestor(@assigned_nodes[1])
 				@trunk_text = common_ancestor.nil? ? "" : common_ancestor.render_to_text
@@ -53,7 +55,7 @@ class ContributionController < ApplicationController
 			parent_node.save
 		end
 
-		redirect_to action: 'contribute', id: parent_node.parent_story.id
+		redirect_to action: 'contribute', id: parent_node.parent_story.id, rating: true
 	end
 
 	def post_rating
@@ -95,7 +97,7 @@ class ContributionController < ApplicationController
 			parent_node2.save
 		end
 
-		redirect_to action: 'contribute', id: parent_node1.parent_story.id
+		redirect_to action: 'contribute', id: parent_node1.parent_story.id, rating: true
 	end
 
 	private
@@ -138,6 +140,11 @@ class ContributionController < ApplicationController
 			node2 = nil
 
 			for node in possibilities do
+
+				# You can't rate your own contribution!
+				if node.contributor == current_contributor
+					next
+				end
 
 				# See if this contributor already rated this node.
 				already_rated = (Rating.where("node_id = ? AND contributor = ?", node.id, current_contributor).length != 0)

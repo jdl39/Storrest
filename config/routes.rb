@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'arbiter#about'
+
   get 'arbiter/new'
 
   get 'arbiter/trim'

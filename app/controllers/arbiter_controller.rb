@@ -1,4 +1,7 @@
 class ArbiterController < ApplicationController
+  def about
+  end
+
   def new
   	@node = Node.new
   end
