@@ -1,3 +1,22 @@
 // Place all the styles related to the arbiter controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.txtarea {
+	width: 400px;
+	height: 100px;
+}
+
+#innerpage {
+	margin-left: 20px;
+}
+
+input[type=text] {
+	width: 400px;
+
+}
+
+input[type=submit] {
+	float: right;
+}
+

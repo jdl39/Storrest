@@ -20,7 +20,7 @@
 	margin: 0px;
 	padding: 0px;
 	position: relative;
-	min-width: 900px;
+	min-width: 940px;
 	//background-color: #0f0;
 }
 
@@ -28,7 +28,7 @@ body {
 	background-image:url('skulls.png');
 	background-repeat: repeat;
 	background-position:left top; 
-
+	font-family: 'Open Sans', sans-serif;
 }
 
 #hblock {
@@ -49,6 +49,85 @@ body {
 	margin-top: 26px;
 	position: absolute;
 }
+
+h1 {
+
+}
+
+input[type=submit] {
+	-moz-box-shadow:inset 0px 1px 0px 0px #fce2c1;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #fce2c1;
+	box-shadow:inset 0px 1px 0px 0px #fce2c1;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffc477), color-stop(1, #fb9e25) );
+	background:-moz-linear-gradient( center top, #ffc477 5%, #fb9e25 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc477', endColorstr='#fb9e25');
+	background-color:#ffc477;
+	-webkit-border-top-left-radius:13px;
+	-moz-border-radius-topleft:13px;
+	border-top-left-radius:13px;
+	-webkit-border-top-right-radius:13px;
+	-moz-border-radius-topright:13px;
+	border-top-right-radius:13px;
+	-webkit-border-bottom-right-radius:13px;
+	-moz-border-radius-bottomright:13px;
+	border-bottom-right-radius:13px;
+	-webkit-border-bottom-left-radius:13px;
+	-moz-border-radius-bottomleft:13px;
+	border-bottom-left-radius:13px;
+	text-indent:0;
+	border:1px solid #eeb44f;
+	display:inline-block;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:16px;
+	font-weight:bold;
+	font-style:normal;
+	height:30px;
+	line-height:26px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:1px 1px 0px #cc9f52;
+}
+input[type=submit]:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #fb9e25), color-stop(1, #ffc477) );
+	background:-moz-linear-gradient( center top, #fb9e25 5%, #ffc477 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb9e25', endColorstr='#ffc477');
+	background-color:#fb9e25;
+}
+input[type=submit]:active {
+	position:relative;
+	top:1px;
+}
+
+#paperpage {
+	background-color: white;
+	width: 500px;
+ 	margin-left: auto;
+    margin-right: auto;
+    margin-top: -25px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 1px;
+    padding-bottom: 20px;
+    z-index: 23;
+    -webkit-box-shadow: 14px 15px 29px -6px rgba(0,0,0,0.66);
+	-moz-box-shadow: 14px 15px 29px -6px rgba(0,0,0,0.66);
+	box-shadow: 14px 15px 29px -6px rgba(0,0,0,0.66);
+}
+
+#paper1 {
+	position: absolute;
+	left: 300px;
+	top: 0px;
+	z-index: 0;
+
+}
+
+.shadow {
+    -webkit-filter: drop-shadow( 2px 5px 5px #000 );
+    //        filter: drop-shadow( 3px 3px 3px #000 ); /* Same syntax as box-shadow */
+}
+
 
 #mainbody {
 
