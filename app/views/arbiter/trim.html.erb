@@ -1,5 +1,18 @@
 <h1>Trim the Story</h1>
 
-<% @story.nodes.each do |node| %>
-  <%= check_box_tag "car_ids[]", c.id, false, :id => "car_ids_#{c.id}" %>
+<%= form_tag("/arbiter/trimPost", method: "post") do %>
+ 	<table>
+ 		<% @nodes.each do |n| %>
+ 		<tr>
+ 			<td>
+ 				<%= n.text %>
+ 			</td>
+ 			<td>
+ 				<%= check_box_tag "selected_nodes[]", n.id, true %>
+ 				<%= label_tag 'Keep?'%>
+ 			</td>
+ 		</tr>
+ 		<% end %>
+	</table>
+	  <%= submit_tag("Submit") %>
 <% end %>

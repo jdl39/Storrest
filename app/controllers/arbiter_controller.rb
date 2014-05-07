@@ -1,4 +1,7 @@
 class ArbiterController < ApplicationController
+  def about
+  end
+
   def new
   	@node = Node.new
   end
@@ -35,11 +38,13 @@ class ArbiterController < ApplicationController
   end
 
   def trim
-    @story = Story.find(params[:id])
+    @nodes = Node.where(parent_story: params[:id], is_active: true)
   end
 
   def trimPost
-    
+    a = params[:nodes]
+    b = params[:selected_nodes]
+    redirect_to(:action => :new)
   end
 
   def login
