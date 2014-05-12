@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
   root 'arbiter#about'
 
-  get 'arbiter/new'
+  get 'arbiter/new_story'
+
+  get 'signup', to: 'arbiter#new'
 
   get 'arbiter/trim'
 
-  get 'arbiter/login'
+  get 'logout', to: 'sessions#destroy'
 
   get 'arbiter/owned'
+
+  get 'login', to: 'sessions#new'
 
   get ':controller(/:action(/:id))'
   post ':controller(/:action(/:id))'

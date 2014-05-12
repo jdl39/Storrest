@@ -101,13 +101,6 @@ class ContributionController < ApplicationController
 	end
 
 	private
-		def current_contributor
-			if cookies[:contributor_id].nil?
-				cookies.permanent[:contributor_id] = SecureRandom.urlsafe_base64
-			end
-			return cookies[:contributor_id]
-		end
-
 		def node_to_assign_for_writing(possibilities)
 			to_return = nil
 			for node in possibilities do

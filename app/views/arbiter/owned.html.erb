@@ -1,2 +1,13 @@
-<h1>Arbiter#owned</h1>
-<p>Find me in app/views/arbiter/owned.html.erb</p>
+<div id='paperpage'>
+<h1>Owned Stories</h1>
+<table>
+	<tr><td>Story Title</td><td>Contribution Url</td><td>Trim</td></tr>
+<% @stories.each do |story| %>
+	<tr>
+		<td><%= story.title %></td>
+		<td><a href="/contribution/contribute/<%= story.id %>"><%= request.original_url.partition('arbiter/share').first %>contribution/contribute/<%= story.id %></a></td>
+		<td><a href="/arbiter/trim/<%= story.id %>">Trim</a></td>
+	</tr>
+<% end %>
+</table>
+</div>

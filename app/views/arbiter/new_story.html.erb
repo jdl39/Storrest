@@ -1,0 +1,22 @@
+<div id='paperpage'>
+    <h1>Start a New Story</h1>
+
+    <h4>Enter the story seed here</h4>
+
+    <%= form_for(@node, :url => {:action => :create_story}) do |f| %>
+    	<table>
+        	<tr>
+        		<td>Story Title</td>
+        		<td><%= f.text_field :contributor %></td>
+        	</tr>
+    		<tr>
+         		<td><%= f.label :text %></td>
+         		<td><%= f.text_area :text, :class => 'txtarea'%></td>
+        	</tr>
+    		<tr>
+                <td><%= f.label " " %></td>
+          		<td><%= f.submit %></td>
+        	</tr>
+    	</table>
+    <% end %>
+</div>

@@ -1,17 +1,36 @@
 class ArbiterController < ApplicationController
+  before_action :require_login, except: [:about, :new]
+
   def about
   end
 
   def new
-  	@node = Node.new
+    @arbiter = Arbiter.new
   end
 
   def create
+    @arbiter = Arbiter.new
+    @arbiter.username = params[:arbiter][:username]
+    @arbiter.password = params[:arbiter][:password]
+    @arbiter.password_confirmation = params[:arbiter][:password_confirmation]
+    if @arbiter.save
+      sign_in @arbiter
+      redirect_to action: "new_story"
+    else
+      render 'new'
+    end
+  end
+
+  def new_story
+  	@node = Node.new
+  end
+
+  def create_story
   	# if session[:id] && params[:photo] #Uncomment this once logging in is allowed
   	if params[:node]
   		newNode = Node.new
   		newNode.parent_node = nil
-  		#newNode.contributor = session[:username]
+  		newNode.contributor = current_contributor
   		newNode.text = params[:node][:text]
   		newNode.is_active = false
   		newNode.contributions_completed = false
@@ -19,7 +38,7 @@ class ArbiterController < ApplicationController
   		
   		
   		newStory = Story.new
-  		#newStory.arbiter = session[:id]
+  		newStory.arbiter = current_arbiter
   		newStory.root_node = newNode
   		newStory.title = params[:node][:contributor]
   		newStory.complete = false
@@ -38,6 +57,9 @@ class ArbiterController < ApplicationController
   end
 
   def trim
+    if Story.find(params[:id]).arbiter != current_arbiter
+      redirect_to action: 'owned'
+    end
     @nodes = Node.where(parent_story: params[:id], is_active: true)
   end
 
@@ -47,9 +69,14 @@ class ArbiterController < ApplicationController
     redirect_to(:action => :new)
   end
 
-  def login
+  def owned
+    @stories = current_arbiter.stories
   end
 
-  def owned
-  end
+  private
+    def require_login
+      unless signed_in?
+        redirect_to controller: 'sessions', action: 'new'
+      end
+    end
 end

@@ -1,22 +1,17 @@
 <div id='paperpage'>
-    <h1>Start a New Story</h1>
-
-    <h4>Enter the story seed here</h4>
-
-    <%= form_for(@node, :url => {:action => :create}) do |f| %>
-    	<table>
-        	<tr>
-        		<td>Story Title</td>
-        		<td><%= f.text_field :contributor %></td>
-        	</tr>
-    		<tr>
-         		<td><%= f.label :text %></td>
-         		<td><%= f.text_area :text, :class => 'txtarea'%></td>
-        	</tr>
-    		<tr>
-                <td><%= f.label " " %></td>
-          		<td><%= f.submit %></td>
-        	</tr>
-    	</table>
+    <h1>Sign up as an Arbiter!</h1>
+    <% unless @arbiter.errors.nil? %>
+        <% @arbiter.errors.full_messages.each do |msg| %>
+            <div class="alert alert-error"><%= msg %></div>
+        <% end %>
+    <% end %>
+    <%= form_for @arbiter, url: '/arbiter/create' do |f| %>
+        <%= f.label :username %>
+        <%= f.text_field :username %>
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation %>
+        <%= f.submit "Sign up!", class: "btn btn-large btn-primary" %>
     <% end %>
 </div>

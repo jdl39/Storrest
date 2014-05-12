@@ -15,11 +15,13 @@ ActiveRecord::Schema.define(version: 20140430215959) do
 
   create_table "arbiters", force: true do |t|
     t.string   "username"
-    t.string   "password"
+    t.string   "password_digest"
+    t.string   "remember_token"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "arbiters", ["remember_token"], name: "index_arbiters_on_remember_token", unique: true
   add_index "arbiters", ["username"], name: "index_arbiters_on_username", unique: true
 
   create_table "nodes", force: true do |t|
