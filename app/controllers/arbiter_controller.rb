@@ -2,6 +2,11 @@ class ArbiterController < ApplicationController
   before_action :require_login, except: [:about, :new]
 
   def about
+    nodes_in_need = Node.where('contributions_completed = ? or ratings_completed = ?', false, false)
+    @stories = Set.new
+    nodes_in_need.each do |node|
+      @stories << node.parent_story
+    end
   end
 
   def new

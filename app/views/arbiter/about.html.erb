@@ -14,4 +14,11 @@ We tell Storrests.
 <p>
 And you, dear readers, are the gardeners. You are the ones who will plant the seeds, give life to the leaves, and trim the branches. With the help of your friends, you can create something special: a work of art that does not belong to any one of you, but is rather a creation of many. So quick! Click <a href="/login">here</a>! The storrest is waiting...
 </p>
+
+<div class="text-separator"></div>
+
+<h3>Want to help grow a Storrest? Try these!</h3>
+<% @stories.each do |story| %>
+	<p><a href="/contribution/contribute/<%= story.id %>"><%= story.title %></a></p>
+<% end %>
 </div>
