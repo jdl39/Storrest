@@ -140,3 +140,25 @@ input[type=submit]:active {
 	width: 100%;
 	height: 50px;
 }
+
+.navbar {
+	position: absolute;
+	top: 80px;
+	left: 15px;
+	width: 25%;
+	text-align: left;
+	font-family: 'Montserrat Subrayada', sans-serif;
+	color: #006633;
+	font-size: 20px;
+}
+
+.navbar a {
+	color: inherit;
+	text-decoration: inherit;
+}
+
+.navbar a:hover {
+	background-image: url('bg-glow.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}

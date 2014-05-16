@@ -17,7 +17,19 @@
     	<h1 id='htitle'>Storrest</h1>
     </div>
     <div id='mainbody'>
+      <div class="navbar">
+        <table>
+          <% if signed_in? %>
+          <tr><td><a href="/arbiter/new_story">New Story</a></td></tr>
+          <tr><td><a href="/arbiter/owned">Owned Stories</a></td></tr>
+          <tr><td><a href="/logout">Logout</a></td></tr>
+          <% else %>
+          <tr><td><a href="/login">Storrest Arbiter Login</a></td></tr>
+          <% end %>
+        </table>
+      </div>
       <%= yield %>
+    </div>
   </div>
 
 </body>
