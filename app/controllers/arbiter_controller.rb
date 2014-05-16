@@ -1,5 +1,5 @@
 class ArbiterController < ApplicationController
-  before_action :require_login, except: [:about, :new]
+  before_action :require_login, except: [:about, :new, :create]
 
   def about
     nodes_in_need = Node.where('contributions_completed = ? or ratings_completed = ?', false, false)
