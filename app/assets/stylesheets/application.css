@@ -130,7 +130,7 @@ input[type=submit]:active {
 
 
 #mainbody {
-
+	
 }
 
 .text-separator {
@@ -152,12 +152,13 @@ input[type=submit]:active {
 	font-size: 20px;
 }
 
-.navbar a {
+a {
+	font-family: 'Montserrat Subrayada', sans-serif;
 	color: inherit;
 	text-decoration: inherit;
 }
 
-.navbar a:hover {
+a:hover {
 	background-image: url('bg-glow.png');
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
