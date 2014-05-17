@@ -32,11 +32,11 @@ class ArbiterController < ApplicationController
 
   def create_story
   	# if session[:id] && params[:photo] #Uncomment this once logging in is allowed
-  	if params[:node]
+  	if params[:new_story]
   		newNode = Node.new
   		newNode.parent_node = nil
   		newNode.contributor = current_contributor
-  		newNode.text = params[:node][:text]
+  		newNode.text = params[:new_story][:text]
   		newNode.is_active = false
   		newNode.contributions_completed = false
   		newNode.ratings_completed = false
@@ -45,7 +45,10 @@ class ArbiterController < ApplicationController
   		newStory = Story.new
   		newStory.arbiter = current_arbiter
   		newStory.root_node = newNode
-  		newStory.title = params[:node][:contributor]
+  		newStory.title = params[:new_story][:title]
+      newStory.length = params[:new_story][:length]
+      newStory.contributions_per_node = params[:new_story][:num_additions]
+      newStory.ratings_per_node = params[:new_story][:num_ratings]
   		newStory.complete = false
   		
   		newNode.parent_story = newStory

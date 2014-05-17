@@ -88,7 +88,18 @@ input[type=submit] {
 	text-align:center;
 	text-shadow:1px 1px 0px #cc9f52;
 }
-input[type=submit]:hover {
+input[type=submit]:disabled {
+	-moz-box-shadow:inset 0px 1px 0px 0px #C0C0C0;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #C0C0C0;
+	box-shadow:inset 0px 1px 0px 0px #C0C0C0;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #C0C0C0), color-stop(1, #C0C0C0) );
+	background:-moz-linear-gradient( center top, #C0C0C0 5%, #C0C0C0 100% );
+	background-color:#C0C0C0;
+	border:1px solid #C0C0C0;
+	text-shadow:1px 1px 0px #C0C0C0;
+	opacity: 0.5;
+}
+input[type=submit]:hover:enabled {
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #fb9e25), color-stop(1, #ffc477) );
 	background:-moz-linear-gradient( center top, #fb9e25 5%, #ffc477 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb9e25', endColorstr='#ffc477');

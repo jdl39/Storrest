@@ -6,12 +6,22 @@
         <% end %>
     <% end %>
     <%= form_for @arbiter, url: '/arbiter/create' do |f| %>
-        <%= f.label :username %>
-        <%= f.text_field :username %>
-        <%= f.label :password %>
-        <%= f.password_field :password %>
-        <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation %>
-        <%= f.submit "Sign up!", class: "btn btn-large btn-primary" %>
+        <table>
+            <tr>
+                <td><%= f.label :username %></td>
+                <td><%= f.text_field :username %></td>
+            </tr>
+            <tr>
+                <td><%= f.label :password %></td>
+                <td><%= f.password_field :password %></td>
+            </tr>
+            <tr>
+                <td><%= f.label :password_confirmation %></td>
+                <td><%= f.password_field :password_confirmation %></td>
+            </tr>
+            <tr>
+                <td><%= f.submit "Sign up!", class: "btn btn-large btn-primary" %></td>
+            </tr>
+        </table>
     <% end %>
 </div>

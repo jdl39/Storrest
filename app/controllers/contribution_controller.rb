@@ -50,7 +50,7 @@ class ContributionController < ApplicationController
 		end
 
 		# See if we've got enough contributions.
-		if parent_node.children.size >= Node::NUM_CHILDREN_NEEDED
+		if parent_node.children.size >= parent_node.parent_story.contributions_per_node
 			parent_node.contributions_completed = true
 			parent_node.save
 		end
@@ -88,11 +88,11 @@ class ContributionController < ApplicationController
 		end
 		
 		# See if we've got enough ratings.
-		if parent_node1.ratings.size >= Node::NUM_RATINGS_NEEDED
+		if parent_node1.ratings.size >= parent_node1.parent_story.ratings_per_node
 			parent_node1.ratings_completed = true
 			parent_node1.save
 		end
-		if parent_node2.ratings.size >= Node::NUM_RATINGS_NEEDED
+		if parent_node2.ratings.size >= parent_node2.parent_story.ratings_per_node
 			parent_node2.ratings_completed = true
 			parent_node2.save
 		end

@@ -3,20 +3,47 @@
 
     <h4>Enter the story seed here</h4>
 
-    <%= form_for(@node, :url => {:action => :create_story}) do |f| %>
-    	<table>
+    <%= form_for(:new_story, :url => {:action => :create_story}) do |f| %>
+    	<table id="story_form_table">
         	<tr>
         		<td>Story Title</td>
-        		<td><%= f.text_field :contributor %></td>
+        		<td id="story_title_field"><%= f.text_field :title %></td>
         	</tr>
     		<tr>
          		<td><%= f.label :text %></td>
-         		<td><%= f.text_area :text, :class => 'txtarea'%></td>
+         		<td id="story_text_field"><%= f.text_area :text, :class => 'txtarea'%></td>
         	</tr>
+            <tr>
+                <td>Desired length (number of nodes)</td>
+                <td id="story_length_field"><%= f.text_field :length, value: "30" %></td>
+            </tr>
+            <tr>
+                <td>Desired additions per node</td>
+                <td id="story_additions_field"><%= f.text_field :num_additions, value: "5" %></td>
+            </tr>
+            <tr>
+                <td>Desired ratings per node</td>
+                <td id="story_ratings_field"><%= f.text_field :num_ratings, value: "5" %></td>
+            </tr>
     		<tr>
                 <td><%= f.label " " %></td>
-          		<td><%= f.submit %></td>
+          		<td id="story_submit"><%= f.submit %></td>
         	</tr>
     	</table>
     <% end %>
 </div>
+
+<script>
+$('#story_submit input').attr("disabled", "disabled");
+$('#story_form_table input').on('change keyup paste', function() {
+    // Check if everything's good.
+    var shouldDisable = false;
+    if ($('#story_title_field input').val() == "") shouldDisable = true;
+    if ($('#story_length_field input').val().match(/^[0-9]+$/) == null) shouldDisable = true;
+    if ($('#story_additions_field input').val().match(/^[0-9]+$/) == null) shouldDisable = true;
+    if ($('#story_ratings_field input').val().match(/^[0-9]+$/) == null) shouldDisable = true;
+
+    if (shouldDisable) $('#story_submit input').attr("disabled", "disabled");
+    else $('#story_submit input').removeAttr("disabled");
+})
+</script>

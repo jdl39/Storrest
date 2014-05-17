@@ -57,6 +57,9 @@ ActiveRecord::Schema.define(version: 20140430215959) do
     t.integer  "root_node_id"
     t.string   "title"
     t.boolean  "complete"
+    t.integer  "length"
+    t.integer  "contributions_per_node"
+    t.integer  "ratings_per_node"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
