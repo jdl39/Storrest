@@ -8,6 +8,7 @@ class ContributionController < ApplicationController
 		if not @assigned_node.nil?
 			# Contribute writing to the assigned node.
 			@story_text = @assigned_node.render_to_text
+			@num_nodes_left = @assigned_node.parent_story.length - @assigned_node.length_of_story_so_far
 			# Render the writing view.
 			render 'write'
 			return
@@ -44,6 +45,8 @@ class ContributionController < ApplicationController
 		new_node.is_active = true
 		new_node.contributions_completed = false
 		new_node.ratings_completed = false
+		new_node.is_story_ending = false
+		new_node.completed_story_title = parent_node.parent_story.title
 
 		unless new_node.save
 			# TODO: Handle save errors.

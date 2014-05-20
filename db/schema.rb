@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 20140430215959) do
     t.boolean  "is_active"
     t.boolean  "contributions_completed"
     t.boolean  "ratings_completed"
+    t.boolean  "is_story_ending"
+    t.string   "completed_story_title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

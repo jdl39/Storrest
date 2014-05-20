@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  root 'arbiter#about'
+  root 'visitor#about'
 
   get 'arbiter/new_story'
+
+  get 'view/:id', to: 'visitor#view_node'
 
   get 'signup', to: 'arbiter#new'
 
