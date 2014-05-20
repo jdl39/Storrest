@@ -44,6 +44,8 @@ class ContributionController < ApplicationController
 		new_node.is_active = true
 		new_node.contributions_completed = false
 		new_node.ratings_completed = false
+		new_node.is_story_ending = false
+		new_node.completed_story_title = parent_node.parent_story.title
 
 		unless new_node.save
 			# TODO: Handle save errors.

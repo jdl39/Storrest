@@ -4,7 +4,7 @@ class Node < ActiveRecord::Base
 
   belongs_to :parent_story, :class_name => "Story", :foreign_key => "parent_story_id"
   belongs_to :parent_node, :class_name => "Node", :foreign_key => "parent_node_id"
-  has_one :story
+  has_one :story # What does this line do? (Don't we only need parent_story?)
   has_many :children, :class_name => "Node", :foreign_key => "parent_node_id"
   has_many :ratings
 
@@ -30,6 +30,14 @@ class Node < ActiveRecord::Base
       end
     end
     return nodes[0]
+  end
+
+  def length_of_story
+    if self.parent_node.nil?
+      return 1
+    else
+      return 1 + self.parent_node.length_of_story
+    end
   end
 
 end

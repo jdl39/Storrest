@@ -9,6 +9,9 @@ class CreateNodes < ActiveRecord::Migration
       t.boolean :contributions_completed #needs more contributions?
       t.boolean :ratings_completed #sufficient number of ratings completed?
 
+      t.boolean :is_story_ending
+      t.string :completed_story_title
+
       t.timestamps
     end
   end

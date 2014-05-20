@@ -21,4 +21,9 @@ And you, dear readers, are the gardeners. You are the ones who will plant the se
 <% @stories.each do |story| %>
 	<p><a href="/contribution/contribute/<%= story.id %>"><%= story.title %></a></p>
 <% end %>
+
+<h3>Or perhaps you desire a completed masterpiece?</h3>
+<% @complete_stories.each do |story_data| %>
+	<p><a href="/view/<%= story_data[1] %>"><%= story_data[0] %></a></p>
+<% end %>
 </div>

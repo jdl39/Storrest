@@ -1,13 +1,5 @@
 class ArbiterController < ApplicationController
-  before_action :require_login, except: [:about, :new, :create]
-
-  def about
-    nodes_in_need = Node.where('contributions_completed = ? or ratings_completed = ?', false, false)
-    @stories = Set.new
-    nodes_in_need.each do |node|
-      @stories << node.parent_story
-    end
-  end
+  before_action :require_login, except: [:new, :create]
 
   def new
     @arbiter = Arbiter.new
@@ -71,6 +63,10 @@ class ArbiterController < ApplicationController
     @nodes = Node.where(parent_story: params[:id], is_active: true)
   end
 
+  # TODO: To kill a node, set node.is_active = false, node.contributions_completed = true, node.ratings_completed = true.
+  # To pass a node to the next iteration, set node.is_active = false, node.contributions_completed = false (ratings_completed stays true)
+  # When passing a node, use node.length_of_story to determine if the story should be over (mark node.is_story_ending = true, but kill the node.)
+  # When a node completes a story, we need to get the arbiter to add a completed-story title to it (node.completed_story_title)
   def trimPost
     a = params[:nodes]
     b = params[:selected_nodes]
