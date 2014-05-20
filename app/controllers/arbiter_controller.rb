@@ -9,6 +9,10 @@ class ArbiterController < ApplicationController
     end
   end
 
+  def view
+    @nodes = Node.where(parent_story: params[:id])
+  end
+
   def new
     @arbiter = Arbiter.new
   end
