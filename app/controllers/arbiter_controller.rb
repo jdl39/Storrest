@@ -73,7 +73,7 @@ class ArbiterController < ApplicationController
   # When a node completes a story, we need to get the arbiter to add a completed-story title to it (node.completed_story_title)
   def trimPost
     selected_nodes = params[:selected_nodes]
-    nodes_to_kill = params[:nodes] - selected_nodes
+    nodes_to_kill = params[:nodes].values - selected_nodes
     nodes_to_kill.each do |n|
       Node.find(n).kill
     end
