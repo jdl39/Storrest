@@ -12,4 +12,11 @@ module ContributionHelper
 		"Q3",
 		"Q4"]
 	end
+
+	def survey_question_summaries
+		["Q1 s",
+		"Q2 s",
+		"Q3 s",
+		"Q4 s"]
+	end
 end

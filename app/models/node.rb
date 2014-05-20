@@ -41,7 +41,7 @@ class Node < ActiveRecord::Base
 
   def avg_score_for_total_rating
     total = 0
-    (0..4).each do |rating_num|
+    (0..3).each do |rating_num|
       total += self.avg_score_for_rating(rating_num)
     end
     return total * 1.0 / 4
