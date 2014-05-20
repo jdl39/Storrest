@@ -55,4 +55,16 @@ class Node < ActiveRecord::Base
     return total * 1.0 / self.ratings.size
   end
 
+  def kill
+    self.is_active = false
+    self.contributions_completed = true
+    self.ratings_completed = true
+    self.save
+  end
+
+  def keep
+    self.is_active = false
+    self.save
+  end
+
 end
