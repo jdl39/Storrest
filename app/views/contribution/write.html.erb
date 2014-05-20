@@ -1,5 +1,15 @@
 <div id='paperpage'>
 	<h1>Contribute to the Story</h1>
+	<p class="length-notification">
+		<% if @num_nodes_left == 1 %>
+			You are the last person to add to this story! Go ahead and give it a good ending.
+		<% else %>
+			After you add to this story, <%= @num_nodes_left - 1 %> more additions will be made.
+			<% if @num_nodes_left <= 10 %>
+				It might be time to start wrapping things up!
+			<% end %>
+		<% end %>
+	</p>
 
 	<%= form_for :contribution, :url => {action: 'post_writing'} do |f| %>
 	 	<%= hidden_field_tag 'contribution[parent_id]', @assigned_node.id %>

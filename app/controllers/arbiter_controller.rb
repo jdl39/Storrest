@@ -65,7 +65,7 @@ class ArbiterController < ApplicationController
 
   # TODO: To kill a node, set node.is_active = false, node.contributions_completed = true, node.ratings_completed = true.
   # To pass a node to the next iteration, set node.is_active = false, node.contributions_completed = false (ratings_completed stays true)
-  # When passing a node, use node.length_of_story to determine if the story should be over (mark node.is_story_ending = true, but kill the node.)
+  # When passing a node, use node.length_of_story_so_far to determine if the story should be over (mark node.is_story_ending = true, but kill the node.)
   # When a node completes a story, we need to get the arbiter to add a completed-story title to it (node.completed_story_title)
   def trimPost
     a = params[:nodes]

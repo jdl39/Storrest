@@ -32,7 +32,7 @@ class Node < ActiveRecord::Base
     return nodes[0]
   end
 
-  def length_of_story
+  def length_of_story_so_far
     if self.parent_node.nil?
       return 1
     else

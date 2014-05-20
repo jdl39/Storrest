@@ -174,3 +174,7 @@ a:hover {
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 }
+
+.length-notification {
+	font-style: italic;
+}

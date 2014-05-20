@@ -8,6 +8,7 @@ class ContributionController < ApplicationController
 		if not @assigned_node.nil?
 			# Contribute writing to the assigned node.
 			@story_text = @assigned_node.render_to_text
+			@num_nodes_left = @assigned_node.parent_story.length - @assigned_node.length_of_story_so_far
 			# Render the writing view.
 			render 'write'
 			return
