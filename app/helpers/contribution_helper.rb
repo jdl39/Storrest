@@ -5,4 +5,11 @@ module ContributionHelper
 		end
 		return cookies[:contributor_id]
 	end
+
+	def survey_questions
+		["Q1",
+		"Q2",
+		"Q3",
+		"Q4"]
+	end
 end
