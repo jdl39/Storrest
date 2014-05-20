@@ -1,6 +1,10 @@
 class ArbiterController < ApplicationController
   before_action :require_login, except: [:new, :create]
 
+  def view
+    @nodes = Node.where(parent_story: params[:id])
+  end
+
   def new
     @arbiter = Arbiter.new
   end
