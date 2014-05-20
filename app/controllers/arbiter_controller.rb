@@ -68,8 +68,17 @@ class ArbiterController < ApplicationController
   # When passing a node, use node.length_of_story_so_far to determine if the story should be over (mark node.is_story_ending = true, but kill the node.)
   # When a node completes a story, we need to get the arbiter to add a completed-story title to it (node.completed_story_title)
   def trimPost
-    a = params[:nodes]
-    b = params[:selected_nodes]
+    selected_nodes = params[:selected_nodes]
+    nodes_to_kill = params[:nodes] - selected_nodes
+    nodes_to_kill.each do |n|
+      Node.find(n).kill
+    end
+    selected_nodes.each do |n|
+      Node.find(n).keep
+    end
+
+
+    puts "Selected Nodes: ", params.to_s
     redirect_to(:action => :new)
   end
 

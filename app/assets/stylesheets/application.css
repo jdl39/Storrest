@@ -126,6 +126,38 @@ input[type=submit]:active {
 	box-shadow: 14px 15px 29px -6px rgba(0,0,0,0.66);
 }
 
+
+.nodeText {
+	width: 35%;
+}
+
+.trimTable {
+	width: 100%;
+}
+
+.trimTable td {
+	padding-left:;
+	padding-right:;
+	padding-top:;
+	text-align: center;
+}
+
+#widepaperpage {
+	background-color: white;
+	width: 800px;
+ 	margin-left: auto;
+    margin-right: auto;
+    margin-top: -25px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 1px;
+    padding-bottom: 20px;
+    z-index: 23;
+    -webkit-box-shadow: 14px 15px 29px -6px rgba(0,0,0,0.66);
+	-moz-box-shadow: 14px 15px 29px -6px rgba(0,0,0,0.66);
+	box-shadow: 14px 15px 29px -6px rgba(0,0,0,0.66);
+}
+
 #paper1 {
 	position: absolute;
 	left: 300px;
