@@ -35,7 +35,7 @@ class Node < ActiveRecord::Base
     if self.parent_node.nil?
       return 1
     else
-      return 1 + self.parent_node.length_of_story
+      return 1 + self.parent_node.length_of_story_so_far
     end
   end
 
@@ -63,7 +63,15 @@ class Node < ActiveRecord::Base
   end
 
   def keep
-    self.is_active = false
+    if self.parent_story.length - self.length_of_story_so_far <= 0
+      self.is_active = false
+      self.contributions_completed = true
+      self.ratings_completed = true
+      self.is_story_ending = true
+    else
+      self.is_active = false
+      self.ratings_completed = true
+    end
     self.save
   end
 
