@@ -15,7 +15,7 @@
 
 	<h2>Rating 1</h2>
 	<% (1..4).each do |rating_num| %>
-		<p>Question <%= rating_num.to_s %></p>
+		<p><%= survey_questions[rating_num - 1] %></p>
 		<% (1..5).each do |rating_val| %>
 			<%= f.radio_button 'rating1' + rating_num.to_s, rating_val, checked: rating_val == 3 ? true : false %>
 			<%= f.label 'rating1' + rating_num.to_s, rating_val.to_s, value: rating_val %>
@@ -26,7 +26,7 @@
 
 	<h2>Rating 2</h2>
 	<% (1..4).each do |rating_num| %>
-		<p>Question <%= rating_num.to_s %></p>
+		<p><%= survey_questions[rating_num - 1] %></p>
 		<% (1..5).each do |rating_val| %>
 			<%= f.radio_button 'rating2' + rating_num.to_s, rating_val, checked: rating_val == 3 ? true : false %>
 			<%= f.label 'rating2' + rating_num.to_s, rating_val.to_s, value: rating_val %>
