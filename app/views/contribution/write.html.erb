@@ -1,5 +1,15 @@
 <div id='paperpage'>
 	<h1>Contribute to the Story</h1>
+
+	<div id="instructions">
+		<a href="">Instructions</a>
+		<p style="display:none;">INSTRUCTIONS INSTRUCTIONS INSTRUCTIONS INSTRUCTIONS
+			INSTRUCTIONS INSTRUCTIONS INSTRUCTIONS INSTRUCTIONS
+		 INSTRUCTIONS INSTRUCTIONS INSTRUCTIONS INSTRUCTIONS 
+		 INSTRUCTIONS INSTRUCTIONS INSTRUCTIONS INSTRUCTIONS
+		 INSTRUCTIONS INSTRUCTIONS INSTRUCTIONS INSTRUCTIONS</p>
+	</div>
+
 	<p class="length-notification">
 		<% if @num_nodes_left == 1 %>
 			You are the last person to add to this story! Go ahead and give it a good ending.
@@ -28,3 +38,17 @@
  			</tr>
 	<% end %>
 </div>
+
+<script>
+instructionsVisible = false
+$("#instructions a").click(function(e) {
+	e.preventDefault()
+	if (instructionsVisible) {
+		instructionsVisible = false;
+		$("#instructions p").slideUp();
+	} else {
+		instructionsVisible = true;
+		$("#instructions p").slideDown();
+	}
+})
+</script>
