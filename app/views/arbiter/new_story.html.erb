@@ -1,7 +1,17 @@
 <div id='paperpage'>
     <h1>Start a New Story</h1>
 
-    <h4>Enter the story seed here</h4>
+    <h4 style="margin-bottom:5px;">Enter the story seed here</h4>
+    <div id="instructions">
+        <a href="" style="font-size:10pt; color:grey; font-family: sans-serif;">More Instructions ▾</a>
+        <p style="display:none; font-size:10pt;">
+            As the arbiter, you get to plant the seed of a story.  Give it a name and write the first few lines.  Then decide how many different contributions (nodes) will be in the story.  That’s the length of the story.  You also get to decide how many new contributions you want for each node and how many votes you want on each contribution.
+
+            Once you’ve done that, click the “Save New Story” button and you’re set.  You’re your story has been saved, you’ll see a link where people can contribute.  Share the link with all your friends who you want to contribute.
+
+            Check the “Trim” page under “Owned Stories” regularly.  That’s where you’ll guide the progression of the story once everybody contributes.
+        </p>
+    </div>
 
     <%= form_for(:new_story, :url => {:action => :create_story}) do |f| %>
     	<table id="story_form_table">
@@ -32,11 +42,8 @@
     	</table>
     <% end %>
 </div>
-As the arbiter, you get to plant the seed of a story.  Give it a name and write the first few lines.  Then decide how many different contributions (nodes) will be in the story.  That’s the length of the story.  You also get to decide how many new contributions you want for each node and how many votes you want on each contribution.
 
-Once you’ve done that, click the “Save New Story” button and you’re set.  You’re your story has been saved, you’ll see a link where people can contribute.  Share the link with all your friends who you want to contribute.
 
-Check the “Trim” page under “Owned Stories” regularly.  That’s where you’ll guide the progression of the story once everybody contributes.
 
 <script>
 $('#story_submit input').attr("disabled", "disabled");
@@ -50,5 +57,17 @@ $('#story_form_table input').on('change keyup paste', function() {
 
     if (shouldDisable) $('#story_submit input').attr("disabled", "disabled");
     else $('#story_submit input').removeAttr("disabled");
+})
+
+instructionsVisible = false
+$("#instructions a").click(function(e) {
+    e.preventDefault()
+    if (instructionsVisible) {
+        instructionsVisible = false;
+        $("#instructions p").slideUp();
+    } else {
+        instructionsVisible = true;
+        $("#instructions p").slideDown();
+    }
 })
 </script>
