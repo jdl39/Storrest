@@ -1,3 +1,4 @@
+<div id='paperpage'>
 <h1>Rating Page</h1>
 
 	<div id="instructions">
@@ -9,40 +10,50 @@ This is where you get to direct how the story will take shape.  Please answer th
 <h2 class="story-title"><%= @story.title %></h2>
 <p><%= @trunk_text %></p>
 
-<h2>Branch 1</h2>
-<p><%= @branch_texts[0] %></p>
+<!-- <div id="branch1" class="page-curl shadow-bottom shadow-right"> -->
+<div id="branch1" class="postit">
+	<center><b>Potential Branch 1</b></center>
+<%= @branch_texts[0] %>
+</div>
 
-<h2>Branch 2</h2>
-<p><%= @branch_texts[1] %></p>
+<div id="branch2" class="postit">
+	<center><b>Potential Branch 2</b></center>
+<%= @branch_texts[1] %>
+</div>
 
 <%= form_for :rating_params, url: {action: 'post_rating'} do |f| %>
 	<%= hidden_field_tag 'rating_params[node1_id]', @assigned_nodes[0].id %>
 	<%= hidden_field_tag 'rating_params[node2_id]', @assigned_nodes[1].id %>
 
-	<h2>Rating 1</h2>
-	<% (1..4).each do |rating_num| %>
-		<p><%= survey_questions[rating_num - 1] %></p>
-		<% (1..5).each do |rating_val| %>
-			<%= f.radio_button 'rating1' + rating_num.to_s, rating_val, checked: rating_val == 3 ? true : false %>
-			<%= f.label 'rating1' + rating_num.to_s, rating_val.to_s, value: rating_val %>
+	<div id="branch1ratings" class="ratings">
+		<h2>Rating 1</h2>
+		<% (1..4).each do |rating_num| %>
+			<p><%= survey_questions[rating_num - 1] %></p>
+			<% (1..5).each do |rating_val| %>
+				<%= f.radio_button 'rating1' + rating_num.to_s, rating_val, checked: rating_val == 3 ? true : false %>
+				<%= f.label 'rating1' + rating_num.to_s, rating_val.to_s, value: rating_val %>
+			<% end %>
 			<br />
 		<% end %>
-		<br />
-	<% end %>
+	</div>
 
-	<h2>Rating 2</h2>
-	<% (1..4).each do |rating_num| %>
-		<p><%= survey_questions[rating_num - 1] %></p>
-		<% (1..5).each do |rating_val| %>
-			<%= f.radio_button 'rating2' + rating_num.to_s, rating_val, checked: rating_val == 3 ? true : false %>
-			<%= f.label 'rating2' + rating_num.to_s, rating_val.to_s, value: rating_val %>
+	<div id="branch2ratings" class="ratings">
+		<h2>Rating 2</h2>
+		<% (1..4).each do |rating_num| %>
+			<p><%= survey_questions[rating_num - 1] %></p>
+			<% (1..5).each do |rating_val| %>
+				<%= f.radio_button 'rating2' + rating_num.to_s, rating_val, checked: rating_val == 3 ? true : false %>
+				<%= f.label 'rating2' + rating_num.to_s, rating_val.to_s, value: rating_val %>
+			<% end %>
 			<br />
 		<% end %>
-		<br />
-	<% end %>
 
-	<%= f.submit %>
+		<%= f.submit 'Submit Ratings', :class => 'writesubmit2' %>
+	</div>
 <% end %>
+<br>
+<br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 <script>
 instructionsVisible = false
