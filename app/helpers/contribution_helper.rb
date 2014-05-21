@@ -7,16 +7,16 @@ module ContributionHelper
 	end
 
 	def survey_questions
-		["Q1",
-		"Q2",
-		"Q3",
-		"Q4"]
+		["How much does it advance the plot or make you feel something?",
+		"How well-written is it?",
+		"How well does it fit with the rest of the story?",
+		"How much do you like it overall?"]
 	end
 
 	def survey_question_summaries
-		["Q1 s",
-		"Q2 s",
-		"Q3 s",
-		"Q4 s"]
+		["Emotional/Plot",
+		"Style",
+		"Cohesion",
+		"Overall"]
 	end
 end
