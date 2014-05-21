@@ -8,6 +8,15 @@ class Node < ActiveRecord::Base
   has_many :children, :class_name => "Node", :foreign_key => "parent_node_id"
   has_many :ratings
 
+  def as_json(options = {})
+    {
+      text: self.text,
+      is_active: self.is_active,
+      parent:       self.parent_node_id,
+      id: self.id
+    }
+  end
+
   def render_to_text_after_node(node)
     if self.parent_node == node
       return self.text

@@ -9,6 +9,11 @@ class ArbiterController < ApplicationController
     @arbiter = Arbiter.new
   end
 
+  def nodes
+    @nodes = Node.where(parent_story: params[:id])
+    render json: @nodes.as_json() 
+  end
+
   def create
     @arbiter = Arbiter.new
     @arbiter.username = params[:arbiter][:username]
