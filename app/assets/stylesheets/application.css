@@ -209,4 +209,18 @@ a:hover {
 
 .length-notification {
 	font-style: italic;
+	margin: 0px;
+}
+
+#instructions {
+	padding-top: 0px;
+	padding-bottom: 20px;
+	/*border-style: solid;
+	border-color: grey;
+	border-width: 1px;*/
+}
+
+.story-title {
+	font-size: 20px;
+	text-align: center;
 }
