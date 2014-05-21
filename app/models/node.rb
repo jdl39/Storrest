@@ -4,7 +4,6 @@ class Node < ActiveRecord::Base
 
   belongs_to :parent_story, :class_name => "Story", :foreign_key => "parent_story_id"
   belongs_to :parent_node, :class_name => "Node", :foreign_key => "parent_node_id"
-  has_one :story # What does this line do? (Don't we only need parent_story?)
   has_many :children, :class_name => "Node", :foreign_key => "parent_node_id"
   has_many :ratings
 
@@ -45,13 +44,13 @@ class Node < ActiveRecord::Base
     if self.parent_node.nil?
       return 1
     else
-      return 1 + self.parent_node.length_of_story
+      return 1 + self.parent_node.length_of_story_so_far
     end
   end
 
   def avg_score_for_total_rating
     total = 0
-    (0..4).each do |rating_num|
+    (0..3).each do |rating_num|
       total += self.avg_score_for_rating(rating_num)
     end
     return total * 1.0 / 4
@@ -63,6 +62,26 @@ class Node < ActiveRecord::Base
       total += rating.rating_array[rating_num]
     end
     return total * 1.0 / self.ratings.size
+  end
+
+  def kill
+    self.is_active = false
+    self.contributions_completed = true
+    self.ratings_completed = true
+    self.save
+  end
+
+  def keep
+    if self.parent_story.length - self.length_of_story_so_far <= 0
+      self.is_active = false
+      self.contributions_completed = true
+      self.ratings_completed = true
+      self.is_story_ending = true
+    else
+      self.is_active = false
+      self.ratings_completed = true
+    end
+    self.save
   end
 
 end

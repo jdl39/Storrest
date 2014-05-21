@@ -1,18 +1,56 @@
+
+<div id="widepaperpage">
+
 <h1>Trim the Story</h1>
 
+
+<h3> Candidate Nodes</h3>
 <%= form_tag("/arbiter/trimPost", method: "post") do %>
- 	<table>
- 		<% @nodes.each do |n| %>
+ 	<% (0...@nodes.size).each do |num| %>
+		<%= hidden_field_tag("nodes[" + num.to_s + "]", @nodes[num].id) %>
+	<% end %>
+ 	<table class="trimTable">
+ 		<tr>
+ 			<th class="nodeText">Node Text</th>
+ 			<th>Keep?</th>
+ 			<% (0..3).each do |rating_num| %>
+ 				<th><%= survey_question_summaries[rating_num] %></th>
+ 			<% end %>
+ 			<th>Avg Rating</th>
+ 			<th>Num Ratings</th>
+		</tr>
+ 		<% @nodes.sort_by{|n| 
+ 			a = n.avg_score_for_total_rating
+ 			a.nan? ? 0.0 : -a }.each do |n| %>
  		<tr>
  			<td>
  				<%= n.text %>
  			</td>
  			<td>
  				<%= check_box_tag "selected_nodes[]", n.id, true %>
- 				<%= label_tag 'Keep?'%>
  			</td>
+ 			
+ 				<% (0..3).each do |rating_num| %>
+ 					<td>
+ 					<% if n.avg_score_for_rating(rating_num).nan? %>
+ 						-
+ 					<% else %>
+ 						<%= n.avg_score_for_rating(rating_num) %>
+ 					<% end %>
+ 					</td>
+ 				<% end %>
+ 				<td>
+ 					<% if n.avg_score_for_total_rating.nan? %>
+ 						-
+ 					<% else %>
+ 						<%= n.avg_score_for_total_rating %>
+ 					<% end %>
+ 				</td>
+ 				<td><%= n.ratings.size %></td>
+ 			
  		</tr>
  		<% end %>
 	</table>
 	  <%= submit_tag("Submit") %>
 <% end %>
+</div>
