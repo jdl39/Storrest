@@ -21,11 +21,14 @@
 	-webkit-box-shadow: 3px 3px 12px 0px rgba(50, 50, 50, 0.75);
 	-moz-box-shadow:    3px 3px 12px 0px rgba(50, 50, 50, 0.75);
 	box-shadow:         3px 3px 12px 0px rgba(50, 50, 50, 0.75);
+	font-size: 10pt;
+	width: 260px;
+	padding: 10px;
 }
 
 #branch1ratings {
 	float: left;
-	margin-left: -10px;
+	margin-left: 0px;
 }
 
 #branch2ratings {
@@ -42,8 +45,7 @@ margin-right: 10px;
 #branch1 {
 	float: left;
 	margin-left: -35px;
-	width: 280px;
-	height: 280px;
+	min-height: 280px;
 	background: #fefcea; /* Old browsers */
 	background: -moz-linear-gradient(top,  #fefcea 0%, #f1da36 100%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fefcea), color-stop(100%,#f1da36)); /* Chrome,Safari4+ */
@@ -57,8 +59,7 @@ margin-right: 10px;
 #branch2 {
 	float: right;
 	margin-right: -35px;
-	width: 280px;
-	height: 280px;
+	min-height: 280px;
 
 	background: #cdeb8e; /* Old browsers */
 	background: -moz-linear-gradient(top,  #cdeb8e 0%, #a5c956 100%); /* FF3.6+ */
