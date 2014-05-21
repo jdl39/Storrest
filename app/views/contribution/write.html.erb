@@ -1,5 +1,8 @@
 <div id='paperpage'>
 	<h1>Contribute to the Story</h1>
+
+	
+
 	<p class="length-notification">
 		<% if @num_nodes_left == 1 %>
 			You are the last person to add to this story! Go ahead and give it a good ending.
@@ -11,11 +14,20 @@
 		<% end %>
 	</p>
 
+	<div id="instructions">
+		<a href="" style="font-size:10pt; color:grey; font-family: sans-serif;">More Instructions ▾</a>
+		<p style="display:none; font-size:10pt;">Below these instructions, you’ll see the current state of the incomplete story that we need help writing. It’s your turn to add your own contribution and make the story awesome!<br><br>
+
+		Your contribution can be anywhere from a few words to a paragraph, as long as your contribution adds a new idea that moves the story along.  Usually, we recommend aiming for two or three sentences so you make a substantial contribution to the story.<br><br>
+
+At the top of the page, you can see how many more contributions will be made to the story. Use this to determine where you are in the story (beginning, middle, or end) so you can style your addition accordingly.</p>
+	</div>
+
 	<%= form_for :contribution, :url => {action: 'post_writing'} do |f| %>
 	 	<%= hidden_field_tag 'contribution[parent_id]', @assigned_node.id %>
 	 	<table>
 	 		<tr>
- 				<td><b><%= @story.title %></b></td>
+ 				<td class="story-title"><b><%= @story.title %></b></td>
  			</tr>
 	 		<tr>
  				<td><%= @story_text %><br><br></td>
@@ -28,3 +40,17 @@
  			</tr>
 	<% end %>
 </div>
+
+<script>
+instructionsVisible = false
+$("#instructions a").click(function(e) {
+	e.preventDefault()
+	if (instructionsVisible) {
+		instructionsVisible = false;
+		$("#instructions p").slideUp();
+	} else {
+		instructionsVisible = true;
+		$("#instructions p").slideDown();
+	}
+})
+</script>

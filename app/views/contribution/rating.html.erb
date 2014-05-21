@@ -1,7 +1,13 @@
 <div id='paperpage'>
 <h1>Rating Page</h1>
 
-<h3>Story Text so Far...</h3>
+	<div id="instructions">
+		<a href="" style="font-size:10pt; color:grey; font-family: sans-serif;">More Instructions ▾</a>
+		<p style="display:none; font-size:12pt;">
+This is where you get to direct how the story will take shape.  Please answer the questions about how you feel these two contributions work with the preceding story. Once enough people have given their input, the arbiter who guides the story will pick how it will develop based on your ratings. The only way they’ll be able to decide is with your help! </p>
+	</div>
+
+<h2 class="story-title"><%= @story.title %></h2>
 <p><%= @trunk_text %></p>
 
 <!-- <div id="branch1" class="page-curl shadow-bottom shadow-right"> -->
@@ -46,5 +52,16 @@
 	<%= f.submit %>
 <% end %>
 
-This is where you get to direct how the story will take shape.  Please answer the questions about how you feel these two contributions work with the preceding story. Once enough people have given their input, the arbiter who guides the story will pick how it will develop based on your ratings. The only way they’ll be able to decide is with your help! 
-</div>
+<script>
+instructionsVisible = false
+$("#instructions a").click(function(e) {
+	e.preventDefault()
+	if (instructionsVisible) {
+		instructionsVisible = false;
+		$("#instructions p").slideUp();
+	} else {
+		instructionsVisible = true;
+		$("#instructions p").slideDown();
+	}
+})
+</script>
