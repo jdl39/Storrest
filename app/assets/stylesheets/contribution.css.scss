@@ -12,11 +12,12 @@
 	height: 120px;
 }
 
-h3 {
-	margin-top: -15px;
+.story-title {
+	margin-top: -25px;
 }
 
 .postit {
+	margin-top: 20px;
 	-webkit-box-shadow: 3px 3px 12px 0px rgba(50, 50, 50, 0.75);
 	-moz-box-shadow:    3px 3px 12px 0px rgba(50, 50, 50, 0.75);
 	box-shadow:         3px 3px 12px 0px rgba(50, 50, 50, 0.75);
@@ -24,12 +25,18 @@ h3 {
 
 #branch1ratings {
 	float: left;
-	margin-left: -35px;
+	margin-left: -10px;
 }
 
 #branch2ratings {
 	float: right;
-	margin-right: -35px;
+	margin-right: 0px;
+}
+
+.writesubmit2
+{
+	margin-top: 10px;
+margin-right: 10px;
 }
 
 #branch1 {
