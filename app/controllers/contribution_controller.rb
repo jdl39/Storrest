@@ -32,6 +32,13 @@ class ContributionController < ApplicationController
 		end
 	end
 
+
+	def what_is_storrest
+		
+	end
+
+
+
 	def post_writing
 		contribution = params[:contribution]
 
