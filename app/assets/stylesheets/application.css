@@ -136,9 +136,9 @@ input[type=submit]:active {
 }
 
 .trimTable td {
-	padding-left:;
+/*	padding-left:;
 	padding-right:;
-	padding-top:;
+	padding-top:;*/
 	text-align: center;
 }
 
